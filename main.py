@@ -43,11 +43,11 @@ while True:
                 class_name = model.names[class_id]
                 id = int(box.id[0])
                 confidence = float(box.conf[0])
-                
-                if class_name == 'car' and confidence > 0.2:
+
+                if class_name == 'car':
                     x1, y1, x2, y2 = box.xyxy[0]
                     x1, y1, x2, y2 =  int(x1), int (y1), int(x2), int (y2)
-                    cv.rectangle(frame_resized, (x1, y1), (x2,y2), color = (205,255,0), thickness = 2)
+                    cv.rectangle(frame_resized, (x1, y1), (x2,y2), color = (205, 255, 0), thickness = 2)
                     box_center = int((y1 + y2) / 2)
                     
                     
@@ -56,7 +56,7 @@ while True:
                         cars_counted.append(id)
     
     
-    cv.putText(frame_resized, f"Counter: {counter}", (20, 30), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(205,255,0), thickness=2)
+    cv.putText(frame_resized, f"Counter: {counter}", (20, 55), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=2, color= (255, 255, 0), thickness=2)
     out.write(frame_resized)
     cv.imshow('Cars', frame_resized)
     if cv.waitKey(1) & 0xFF==ord('d'):

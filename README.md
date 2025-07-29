@@ -20,6 +20,6 @@ A Python program that uses the YOLOv8 model to detect, track, and count cars cro
 - Ultralytics (YOLOv8)
 
 ## How to Use
-1. Clone the repository: `git clone [YOUR_REPO_URL]`
+1. Clone the repository: `git clone https://github.com/gabriel-souzalima/Contador_de_Carros.git`
 2. Install the dependencies: `pip install -r requirements.txt`
 3. Run the script: `python main.py`
