@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from ultralytics import YOLO
 import cv2 as cv
 model = YOLO('yolov8n.pt')
-outputs  = model("Images/two_cars.png")
-image = cv.imread("Images/two_cars.png")
+outputs  = model("Images/porsche.png")
+image = cv.imread("Images/porsche.png")
 posX = 350
 counter = 0
 for o in outputs: 
