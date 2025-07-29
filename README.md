@@ -1,6 +1,6 @@
 # Video Car Counter with YOLOv8
 
-A Python application that uses the YOLOv8 model to detect, track, and count cars crossing a virtual line in a video. This project was developed as a practical study in Computer Vision.
+A Python program that uses the YOLOv8 model to detect, track, and count cars crossing a virtual line in a video. This project was developed as a practical study in Computer Vision.
 
 ## Demo
 
