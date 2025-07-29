@@ -4,6 +4,7 @@ A Python program that uses the YOLOv8 model to detect, track, and count cars cro
 
 ## Demo
 
+![traffic_demo](https://github.com/user-attachments/assets/6fa8ac2d-5359-4b9b-86eb-7ad84ca55ac0)
 
 ## Features
 - Object detection from a video file.
