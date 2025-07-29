@@ -15,26 +15,37 @@ def rescaleFrame(frame, scale =1):
     return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
 capture = cv.VideoCapture("Videos/Traffic.mp4")
 
-
-
+counter = 0
+line_y = 200
 while True: 
     isTrue, frame = capture.read()
     
     frame_resized = rescaleFrame(frame, scale=0.75)
     outputs = model.track(frame_resized, persist=True)
-    cv.line(frame_resized, (0,200), (600,200))
+    cv.line(frame_resized, (0,line_y), (640,line_y), color = (0, 0 , 255))
+    
     for o in outputs: 
-        for box in o.boxes:
-            class_id = int(box.cls[0])
-            class_name = model.names[class_id]
-            confidence = float(box.conf[0])
-            if class_name == 'car':
-                x1, y1, x2, y2 = box.xyxy[0]
-                x1, y1, x2, y2 =  int(x1), int (y1), int(x2), int (y2)
-                cv.rectangle(frame_resized, (x1, y1), (x2,y2), color = (205,255,0), thickness = 2)
-            
+        if o.boxes.id is not None:
+            for box in o.boxes:
+                class_id = int(box.cls[0])
+                class_name = model.names[class_id]
+                id = int(box.id[0])
+                
+                
+                if class_name == 'car':
+                    x1, y1, x2, y2 = box.xyxy[0]
+                    x1, y1, x2, y2 =  int(x1), int (y1), int(x2), int (y2)
+                    cv.rectangle(frame_resized, (x1, y1), (x2,y2), color = (205,255,0), thickness = 2)
+                    box_center = int((y1 + y2) / 2)
+                    
+                    
+                    if line_y - 10 < box_center < line_y + 10 and id not in cars_counted:
+                        counter += 1
+                        cars_counted.append(id)
     
     
+    cv.putText(frame_resized, f"Counter: {counter}", (20, 30), fontFace=cv.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(205,255,0), thickness=2)
+
     cv.imshow('Cars', frame_resized)
     if cv.waitKey(1) & 0xFF==ord('d'):
         break
